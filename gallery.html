@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery - Democratic Sparks: Youth Igniting Change</title>
+    <!-- Google Fonts & FontAwesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #1e1b4b;
+            --accent-red: #dc2626;
+            --bg-light: #f8fafc;
+            --text-main: #334155;
+            --border-color: #e2e8f0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-main);
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+
+        /* Header & Navigation */
+        header {
+            background: #ffffff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.8rem 1rem;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .logo-area img {
+            height: 60px;
+            width: auto;
+            object-fit: contain;
+            display: block;
+        }
+
+        .nav-right-area {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.2rem;
+            align-items: center;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #64748b;
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: color 0.2s;
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--primary);
+            border-bottom: 2px solid var(--accent-red);
+            padding-bottom: 2px;
+        }
+
+        .lang-switcher select {
+            padding: 4px 8px;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            background: #fff;
+            font-weight: 600;
+            font-size: 0.8rem;
+            cursor: pointer;
+        }
+
+        /* Conținut Galerie */
+        .page-container {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 1.5rem;
+        }
+
+        .page-title {
+            font-size: 2.2rem;
+            color: var(--primary);
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+
+        .page-subtitle {
+            text-align: center;
+            color: #64748b;
+            margin-bottom: 3rem;
+            font-size: 1rem;
+        }
+
+        .full-gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .gallery-item {
+            height: 200px;
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+            transition: transform 0.2s;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-4px);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .back-home-container {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .back-btn {
+            background: var(--primary);
+            color: white;
+            padding: 10px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.9rem;
+            display: inline-block;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary);
+            color: #cbd5e1;
+            padding: 2.5rem 1.5rem 1.5rem 1.5rem;
+        }
+
+        .footer-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 2rem;
+        }
+
+        .footer-col h4 {
+            color: white;
+            margin-bottom: 0.8rem;
+            font-size: 0.95rem;
+        }
+
+        .footer-col p, .footer-col a {
+            color: #cbd5e1;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.3rem;
+            font-size: 0.8rem;
+        }
+
+        .disclaimer-box {
+            max-width: 1200px;
+            margin: 1.2rem auto 0 auto;
+            font-size: 0.7rem;
+            color: #94a3b8;
+            text-align: center;
+            line-height: 1.3;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 992px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem;
+            }
+
+            .nav-right-area {
+                flex-direction: column;
+                gap: 0.8rem;
+                width: 100%;
+            }
+
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 0.8rem 1rem;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header & Navigation -->
+    <header>
+        <div class="nav-container">
+            <a href="index.html" class="logo-area">
+                <img src="dsyic.png" alt="Democratic Sparks Logo" onerror="this.src='https://via.placeholder.com/280x105?text=DSYIC+Logo';">
+            </a>
+            <div class="nav-right-area">
+                <nav>
+                    <ul>
+                        <li><a href="index.html" data-i18n="nav_home">Home</a></li>
+                        <li><a href="index.html#about" data-i18n="nav_about">About</a></li>
+                        <li><a href="index.html#partners" data-i18n="nav_partners">Partners</a></li>
+                        <li><a href="index.html#activities" data-i18n="nav_activities">Activities</a></li>
+                        <li><a href="index.html#results" data-i18n="nav_results">Results</a></li>
+                        <li><a href="gallery.html" class="active" data-i18n="nav_gallery">Gallery</a></li>
+                        <li><a href="index.html#contact" data-i18n="nav_contact">Contact</a></li>
+                    </ul>
+                </nav>
+                <div class="lang-switcher">
+                    <select id="languageSelect" onchange="changeLanguage(this.value)">
+                        <option value="en">ENGLISH</option>
+                        <option value="ro">ROMÂNĂ</option>
+                        <option value="pl">POLSKI</option>
+                        <option value="tr">TÜRKÇE</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Conținut Galerie -->
+    <div class="page-container">
+        <h1 class="page-title" data-i18n="gallery_title_h1">Project Gallery</h1>
+        <p class="page-subtitle" data-i18n="gallery_subtitle">Explore moments, workshops, and activities from Democratic Sparks: Youth Igniting Change.</p>
+
+        <div class="full-gallery-grid">
+            <div class="gallery-item"><img src="gallery1.jpg" alt="Gallery 1" onerror="this.style.display='none';"></div>
+            <div class="gallery-item"><img src="gallery2.jpg" alt="Gallery 2" onerror="this.style.display='none';"></div>
+            <div class="gallery-item"><img src="gallery3.jpg" alt="Gallery 3" onerror="this.style.display='none';"></div>
+            <div class="gallery-item"><img src="gallery4.jpg" alt="Gallery 4" onerror="this.style.display='none';"></div>
+            <div class="gallery-item"><img src="gallery5.jpg" alt="Gallery 5" onerror="this.style.display='none';"></div>
+            <div class="gallery-item"><img src="oradea.jpg" alt="Oradea" onerror="this.style.display='none';"></div>
+            <div class="gallery-item"><img src="hero.png" alt="Hero" onerror="this.style.display='none';"></div>
+            <div class="gallery-item"><img src="about1.jpg" alt="About 1" onerror="this.style.display='none';"></div>
+        </div>
+
+        <div class="back-home-container">
+            <a href="index.html" class="back-btn" data-i18n="back_to_home"><i class="fa-solid fa-arrow-left"></i> Back to Home</a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4 data-i18n="contact_heading">Contact</h4>
+                <p><i class="fa-solid fa-location-dot"></i> Asociatia Comunitatilor Interculturale (ACI Oradea)</p>
+                <p>Oradea, Romania</p>
+                <p><i class="fa-solid fa-envelope"></i> office@ascoint.org</p>
+            </div>
+            <div class="footer-col">
+                <h4 data-i18n="funded_heading">Co-funded by the European Union</h4>
+                <p>Democratic Sparks (KA154-YOU)</p>
+            </div>
+        </div>
+        <div class="disclaimer-box" data-i18n="footer_disclaimer">
+            Funded by the European Union. Views and opinions expressed are however those of the author(s) only and do not necessarily reflect those of the European Union or ANPCDEFP.
+        </div>
+    </footer>
+
+    <!-- Script de traducere complet -->
+    <script>
+        const translations = {
+            en: {
+                nav_home: "Home", nav_about: "About", nav_partners: "Partners", nav_activities: "Activities", nav_results: "Results", nav_gallery: "Gallery", nav_contact: "Contact",
+                gallery_title_h1: "Project Gallery",
+                gallery_subtitle: "Explore moments, workshops, and activities from Democratic Sparks: Youth Igniting Change.",
+                back_to_home: "Back to Home",
+                contact_heading: "Contact",
+                funded_heading: "Co-funded by the European Union",
+                footer_disclaimer: "Funded by the European Union. Views and opinions expressed are however those of the author(s) only and do not necessarily reflect those of the European Union or ANPCDEFP."
+            },
+            ro: {
+                nav_home: "Acasă", nav_about: "Despre", nav_partners: "Parteneri", nav_activities: "Activități", nav_results: "Rezultate", nav_gallery: "Galerie", nav_contact: "Contact",
+                gallery_title_h1: "Galerie Proiect",
+                gallery_subtitle: "Explorează momente, ateliere și activități din Democratic Sparks: Youth Igniting Change.",
+                back_to_home: "Înapoi Acasă",
+                contact_heading: "Contact",
+                funded_heading: "Co-finanțat de Uniunea Europeană",
+                footer_disclaimer: "Co-finanțat de Uniunea Europeană. Punctele de vedere și opiniile exprimate aparțin însă exclusiv autorului(lor) și nu reflectă neapărat punctul de vedere al Uniunii Europene sau al ANPCDEFP."
+            },
+            pl: {
+                nav_home: "Strona główna", nav_about: "O projekcie", nav_partners: "Partnerzy", nav_activities: "Działania", nav_results: "Rezultaty", nav_gallery: "Galeria", nav_contact: "Kontakt",
+                gallery_title_h1: "Galeria Projektu",
+                gallery_subtitle: "Odkryj chwile, warsztaty i działania z Democratic Sparks: Youth Igniting Change.",
+                back_to_home: "Powrót do strony głównej",
+                contact_heading: "Kontakt",
+                funded_heading: "Współfinansowane przez Unię Europejską",
+                footer_disclaimer: "Współfinansowane przez Unię Europejską. Wyrażone poglądy i opinie są jednak wyłącznie poglądami autora(-ów) i niekoniecznie odzwierciedlają poglądy Unii Europejskiej lub ANPCDEFP."
+            },
+            tr: {
+                nav_home: "Ana Sayfa", nav_about: "Hakkında", nav_partners: "Ortaklar", nav_activities: "Faaliyetler", nav_results: "Sonuçlar", nav_gallery: "Galeri", nav_contact: "İletişim",
+                gallery_title_h1: "Proje Galerisi",
+                gallery_subtitle: "Democratic Sparks: Youth Igniting Change'den anları, atölyeleri ve etkinlikleri keşfedin.",
+                back_to_home: "Ana Sayfaya Dön",
+                contact_heading: "İletişim",
+                funded_heading: "Avrupa Birliği tarafından co-funded edilmektedir",
+                footer_disclaimer: "Avrupa Birliği tarafından ortak finansman sağlanmaktadır. Ancak ifade edilen görüş ve düşünceler yalnızca yazar(lar)a aittir și mutlaka Avrupa Birliği'nin veya ANPCDEFP'nin görüşlerini yansıtmaz."
+            }
+        };
+
+        function changeLanguage(lang) {
+            localStorage.setItem('selectedLanguage', lang);
+            
+            const elements = document.querySelectorAll("[data-i18n]");
+            elements.forEach(el => {
+                const key = el.getAttribute("data-i18n");
+                if (translations[lang] && translations[lang][key]) {
+                    if (el.tagName === 'SELECT') {
+                        el.value = lang;
+                    } else {
+                        el.innerText = translations[lang][key];
+                    }
+                }
+            });
+            const selectEl = document.getElementById('languageSelect');
+            if (selectEl) {
+                selectEl.value = lang;
+            }
+        }
+
+        // Aplică limba salvată imediat ce se încarcă pagina gallery.html
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('selectedLanguage');
+            if (savedLang && translations[savedLang]) {
+                changeLanguage(savedLang);
+            }
+        });
+    </script>
+</body>
+</html>
